@@ -17,63 +17,64 @@ DSTFILE = os.path.join(cfg.DATADIR, 'new_file.txt')
 # ----------------------------------------------------------------------------
 # This will open the file located at `SRCFILE` and return a handler (file
 # object):
-fobj  = open(SRCFILE, mode='r')
+# fobj  = open(SRCFILE, mode='r')
 
 # We can get the entire content of the file by calling the method `.read()`,
 # without parameters:
-cnts  = fobj.read()
+# cnts  = fobj.read()
 
 # The variable `cnts` will be a string containing the full contents of the
 # file. This will print the first 20 characters:
-print(cnts[:20])
+# print(cnts[:20])
 
 # Check if the file is closed
-print(fobj.closed)
+# print(fobj.closed)
 
 # Close the file
-fobj.close()
-print(fobj.closed)
+# fobj.close()
+# print(fobj.closed)
 
 # ----------------------------------------------------------------------------
 #   Comparing different approaches to get the contents
 # ----------------------------------------------------------------------------
 # Remember that we previously closed the file so we need to open it again
-fobj = open(SRCFILE, mode='r')
+# fobj = open(SRCFILE, mode='r')
 # Contents using `.read`
-cnts = fobj.read()
-print(f"First 20 characters in cnts: '{cnts[:20]}'")
+# cnts = fobj.read() # # OLD
+# cnts = '' # # NEW
+# print(f"First 20 characters in cnts: '{cnts[:20]}'")
 
 # Start with an empty string
-cnts_copy = ''
+# cnts_copy = ''
 # Iterate over each line of fobj # <comment>
-for line in fobj:
+# for line in fobj:
     # Add this line to the string `cnts_copy` # <comment>
-    cnts_copy += line
+#    cnts_copy += line
 
 # Print the result
-#print(f"First 20 characters in cnts_copy: '{cnts_copy[:20]}'")
+# print(f"First 20 characters in cnts_copy: '{cnts_copy[:20]}'")
 
 # close the file
-#fobj.close()
+# fobj.close()
 
 
 # ----------------------------------------------------------------------------
 #   Reading one line at a time
 # ----------------------------------------------------------------------------
-#fobj = open(SRCFILE, mode='r')
+# fobj = open(SRCFILE, mode='r')
 
 # Read the first line
-#first_line = next(fobj)
+# first_line = next(fobj)
 
 # After that, the fobj iterator now points to the second line in the file
 
-#for line in fobj:
+# for line in fobj:
 #    print(f"fobj now point to : '{line}'")
 #    break
 #
 
 # close the file
-#fobj.close()
+# fobj.close()
 
 
 # ----------------------------------------------------------------------------
@@ -81,16 +82,15 @@ for line in fobj:
 # ----------------------------------------------------------------------------
 # Instead of fobj = open(SRCFILE, mode='r'), use a context manager:
 
-#with open(SRCFILE, mode='r') as fobj:
-#    cnts = fobj.read()
+with open(SRCFILE, mode='r') as fobj:
+    cnts = fobj.read()
 #    # Check if the object is closed inside the manager
-#    print(f'Is the fobj closed inside the manager? {fobj.closed}')
+    print(f'Is the fobj closed inside the manager? {fobj.closed}')
 #
 
 # Notice that we did not close the object when using a context manager
 # But after exiting the context manager, the file will automatically close
-#print(f'Is the fobj closed after we exit the manager? {fobj.closed}')
-
+print(f'Is the fobj closed after we exit the manager? {fobj.closed}')
 
 
 # ----------------------------------------------------------------------------
@@ -115,24 +115,23 @@ def print_lines(pth):
 
 #  This will create the file located at `DSTFILE` and write some content to it
 
-#with open(DSTFILE, mode='w') as fobj:
-#    fobj.write('This is a line')
+with open(DSTFILE, mode='w') as fobj:
+    fobj.write('This is a line')
 #
 
 # Exiting the context manager will close the file
 # We can then print its contents
-#print_lines(DSTFILE)
+print_lines(DSTFILE)
 
 
 # If you open the same file again in writing mode, the line we wrote above
 # will be erased:
 
-#with open(DSTFILE, mode='w') as fobj:
-#    fobj.write('This is another line')
+with open(DSTFILE, mode='w') as fobj:
+    fobj.write('This is another line')
 #
-#print_lines(DSTFILE)
+print_lines(DSTFILE)
 #
-
 
 
 # ----------------------------------------------------------------------------
