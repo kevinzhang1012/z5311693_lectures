@@ -74,9 +74,14 @@ prc_dic = {
   }
 
 # Get the price on '2020-01-13', in this case, 7.02
-x  = '?'
+x  = prc_dic['2020-01-13']
 #print(f'The price on 2020-01-13 is {x}')
-
+print(f'The price on 2020-01-13 is {x}')
 
 # Try the following... it will not work because we cannot slice dictionaries
 #prc_dic['2020-01-02':'2020-01-13']          # Raises Exception
+prices_wk2 = [ prc_dic['2020-01-06'], prc_dic['2020-01-07'],
+               prc_dic['2020-01-08'], prc_dic['2020-01-09'],
+               prc_dic['2020-01-10']
+             ]
+avgprc = sum(prices_wk2)/len(prices_wk2)

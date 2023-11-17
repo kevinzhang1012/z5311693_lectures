@@ -175,10 +175,10 @@ def print_lines_rstrip(pth):
             print(f"line {i}: '{line.rstrip()}'")
 
 #
-#with open(DSTFILE, mode='w') as fobj:
-#    fobj.write('This is a line\n')
-#    fobj.write('This is a another line')
-#print_lines_rstrip(DSTFILE)
+with open(DSTFILE, mode='w') as fobj:
+    fobj.write('This is a line\n')
+    fobj.write('This is a another line')
+print_lines_rstrip(DSTFILE)
 #
 
 
@@ -200,4 +200,6 @@ def safe_open(pth, mode):
         How to open the file. Typically 'w' for writing, 'r' for reading,
         and 'a' for appending. See the `open` function for more options.
     """
-    pass
+    if mode == 'w' and os.path.exists(pth) and os.path.getsize(pth) > 0:
+        raise FileExistsError(f"File '{pth}' already exists and has some content.")
+    return open(pth, mode)
